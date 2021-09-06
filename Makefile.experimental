@@ -1,8 +1,15 @@
-CXX    = g++
+CXX    = clang++-12
 M4     = m4
 AS     = as
 SED    = sed
-CFLAGS = -Wall -Wextra -std=c++17 -O3 -s -march=native -fno-pie -no-pie
+OMP_PROC_BIND=TRUE
+OMP_PLACES=24
+export OMP_NUM_THREADS=24
+OMP_NUM_THREADS=24
+export GOMP_CPU_AFFINITY=“0-{24-1)”
+GOMP_CPU_AFFINITY=“0-{24-1)”
+
+CFLAGS = -Wall -Wextra -O2 -s -march=znver3 -mavx2 -maes -mrdseed -flto -fopenmp -pthread -lpthread -fno-pie -no-pie
 
 msys_version := $(if $(findstring Msys, $(shell uname -o)),$(word 1, $(subst ., ,$(shell uname -r))),0)
 ifneq ($(msys_version), 0)
