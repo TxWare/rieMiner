@@ -22,6 +22,7 @@ endif
 
 all: rieMiner
 
+# debug warn!
 debug: CFLAGS = -Wall -Wextra -std=c++17 -O3 -g -march=native -fno-pie -no-pie
 debug: rieMiner
 
